@@ -1,6 +1,7 @@
 package com.spring.blog.blogrestapi.web.controller;
 
 import com.spring.blog.blogrestapi.domain.Blog;
+import com.spring.blog.blogrestapi.repository.projection.BlogWithUser;
 import com.spring.blog.blogrestapi.repository.projection.CustomBlogFields;
 import com.spring.blog.blogrestapi.service.BlogService;
 import com.spring.blog.blogrestapi.web.model.BlogDto;
@@ -23,7 +24,7 @@ public class BlogController {
     }
 
     @GetMapping("posts")
-    public ResponseEntity<List<CustomBlogFields>> getAllTasks() {
+    public ResponseEntity<List<BlogWithUser>> getAllTasks() {
         return new ResponseEntity<>(blogService.findALlTasks(), HttpStatus.OK);
     }
 
@@ -38,12 +39,12 @@ public class BlogController {
         return new ResponseEntity<>(blogService.saveBlog(blogDto), HttpStatus.CREATED);
     }
 
-    @PutMapping("tasks/{blogId}")
+    @PutMapping("posts/{blogId}")
     public ResponseEntity<BlogDto> updateTask(@Valid @RequestBody BlogDto blogDto, @PathVariable Long blogId) {
         return new ResponseEntity<>(blogService.updateBlog(blogDto, blogId), HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("tasks/{blogId}")
+    @DeleteMapping("posts/{blogId}")
     public ResponseEntity<Object> deleteTask(@PathVariable Long blogId) {
         blogService.deleteBlog(blogId);
         HashMap<String, Object> response = new HashMap<>();

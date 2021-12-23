@@ -20,8 +20,9 @@ public class BlogDto implements Serializable {
 
     @NotNull(message = "user id can't be blank")
     private Long userId;
+    @NotNull(message = "post title can't be null")
     @Size(min = 2,message = "title should be greater than 2")
     private String title;
-    @NotBlank(message = "task description is needed")
+    @NotBlank(message = "blog post description is needed")
     private String post;
 }

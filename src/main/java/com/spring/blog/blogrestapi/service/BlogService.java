@@ -1,14 +1,16 @@
 package com.spring.blog.blogrestapi.service;
 
 import com.spring.blog.blogrestapi.domain.Blog;
+import com.spring.blog.blogrestapi.repository.projection.BlogWithUser;
 import com.spring.blog.blogrestapi.repository.projection.CustomBlogFields;
 import com.spring.blog.blogrestapi.web.model.BlogDto;
+
 import java.util.List;
 import java.util.Optional;
 
 public interface BlogService {
 
-    List<CustomBlogFields> findALlTasks();
+    List<BlogWithUser> findALlTasks();
 
     List<CustomBlogFields> findAllTasksByUserId(Long userId);
 

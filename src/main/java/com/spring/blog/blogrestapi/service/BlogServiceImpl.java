@@ -2,6 +2,7 @@ package com.spring.blog.blogrestapi.service;
 
 import com.spring.blog.blogrestapi.domain.Blog;
 import com.spring.blog.blogrestapi.repository.BlogRepository;
+import com.spring.blog.blogrestapi.repository.projection.BlogWithUser;
 import com.spring.blog.blogrestapi.repository.projection.CustomBlogFields;
 import com.spring.blog.blogrestapi.web.exceptionHandler.NotFoundException;
 import com.spring.blog.blogrestapi.web.mapper.BlogMapper;
@@ -23,7 +24,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<CustomBlogFields> findALlTasks() {
+    public List<BlogWithUser> findALlTasks() {
         return blogRepository.findAllProjectedBy();
     }
 
