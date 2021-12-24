@@ -1,6 +1,5 @@
 package com.spring.blog.blogrestapi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,19 +16,16 @@ import java.util.Objects;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Blog {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    @JsonIgnore
-    @ToString.Exclude
+    private String categoryName;
+    // we use joinColumn annotation to define the foreign key column name in the table
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "last_updated_by", referencedColumnName = "id")
     private User user;
-    private String title;
-    @Column(length = 3000)
-    private String post;
     @CreationTimestamp
     private Timestamp createdDate;
     @UpdateTimestamp
@@ -39,8 +35,8 @@ public class Blog {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Blog blog = (Blog) o;
-        return id != null && Objects.equals(id, blog.id);
+        Category category = (Category) o;
+        return id != null && Objects.equals(id, category.id);
     }
 
     @Override

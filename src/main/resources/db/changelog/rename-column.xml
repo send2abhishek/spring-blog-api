@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1640326399650-1" author="abhishek160.kumar (generated)">
+        <renameColumn columnDataType="DATETIME" tableName="blog" newColumnName="created_date" oldColumnName="created_dated" />
+    </changeSet>
+    <changeSet id="1640326399650-2" author="abhishek160.kumar (generated)">
+        <renameColumn columnDataType="DATETIME" tableName="user" newColumnName="created_date" oldColumnName="created_dated" />
+    </changeSet>
+    <changeSet id="1640326399650-3" author="abhishek160.kumar (generated)">
+        <renameColumn columnDataType="DATETIME" tableName="category" newColumnName="created_date" oldColumnName="created_dated" />
+    </changeSet>
+
+
+</databaseChangeLog>
