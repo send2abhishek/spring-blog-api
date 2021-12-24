@@ -8,7 +8,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -30,10 +32,30 @@ public class Blog {
     private String title;
     @Column(length = 3000)
     private String post;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "blog_category",
+            joinColumns = { @JoinColumn(name = "post_id",referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "category_id",referencedColumnName = "id") })
+    private Set<Category> categories=new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "blog_tag",
+            joinColumns = { @JoinColumn(name = "post_id",referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "tag_id",referencedColumnName = "id") })
+    private Set<Tag> tagSet=new HashSet<>();
     @CreationTimestamp
     private Timestamp createdDate;
     @UpdateTimestamp
     private Timestamp lastModifiedDate;
+
 
     @Override
     public boolean equals(Object o) {

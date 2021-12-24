@@ -10,6 +10,8 @@
     <include file="db/changelog/2021/12/add-user-category-blog.xml"/>
     <include file="db/changelog/2021/12/add-category-name-unique-constraint-category.xml"/>
     <include file="db/changelog/2021/12/add-tag.xml"/>
+    <include file="db/changelog/2021/12/add-blog-category.xml"/>
+    <include file="db/changelog/2021/12/add-blog-tag.xml"/>
 
 
 </databaseChangeLog>
