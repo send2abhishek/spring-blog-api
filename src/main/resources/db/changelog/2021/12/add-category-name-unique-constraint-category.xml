@@ -5,9 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-    <changeSet id="1640327061032-1" author="abhishek160.kumar (generated)">
-        <renameColumn columnDataType="BIGINT" tableName="category" newColumnName="last_updated_by" oldColumnName="user_id" />
+    <changeSet id="1640358211961-1" author="abhishek160.kumar (generated)">
+        <addUniqueConstraint columnNames="category_name" constraintName="uc_category_categoryname"
+                             tableName="category"/>
     </changeSet>
-
 
 </databaseChangeLog>

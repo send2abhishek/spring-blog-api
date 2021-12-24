@@ -1,5 +1,6 @@
 package com.spring.blog.blogrestapi.web.exceptionHandler;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -76,5 +78,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(EmptyResultDataAccessException.class)
     public ResponseEntity<Object> handleRecordNotFound(EmptyResultDataAccessException ex,final HttpServletRequest httpServletRequest) {
         return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage(), httpServletRequest.getRequestURI(), ex.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Object> handleConstraintViolationException(DataIntegrityViolationException ex,final HttpServletRequest httpServletRequest) {
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, Objects.requireNonNull(ex.getRootCause()).getMessage(), httpServletRequest.getRequestURI(), ex.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
     }
 }

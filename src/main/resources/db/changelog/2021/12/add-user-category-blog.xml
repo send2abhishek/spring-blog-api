@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-    <changeSet id="1640271085313-1" author="abhishek160.kumar (generated)">
+    <changeSet id="1640328879925-1" author="abhishek160.kumar (generated)">
         <createTable tableName="blog">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_blog"/>
@@ -13,11 +13,22 @@
             <column name="user_id" type="BIGINT"/>
             <column name="title" type="VARCHAR(255)"/>
             <column name="post" type="VARCHAR(3000)"/>
-            <column name="created_dated" type="DATETIME"/>
+            <column name="created_date" type="DATETIME"/>
             <column name="last_modified_date" type="DATETIME"/>
         </createTable>
     </changeSet>
-    <changeSet id="1640271085313-2" author="abhishek160.kumar (generated)">
+    <changeSet id="1640328879925-2" author="abhishek160.kumar (generated)">
+        <createTable tableName="category">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_category"/>
+            </column>
+            <column name="category_name" type="VARCHAR(255)"/>
+            <column name="last_updated_by" type="BIGINT"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_date" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1640328879925-3" author="abhishek160.kumar (generated)">
         <createTable tableName="user">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user"/>
@@ -26,16 +37,21 @@
             <column name="password" type="VARCHAR(255)"/>
             <column name="email" type="VARCHAR(255)"/>
             <column name="phone_number" type="INT"/>
-            <column name="created_dated" type="DATETIME"/>
+            <column name="created_date" type="DATETIME"/>
             <column name="last_modified_date" type="DATETIME"/>
         </createTable>
     </changeSet>
-    <changeSet id="1640271085313-3" author="abhishek160.kumar (generated)">
+    <changeSet id="1640328879925-4" author="abhishek160.kumar (generated)">
         <addUniqueConstraint columnNames="email" constraintName="uc_user_email" tableName="user"/>
     </changeSet>
-    <changeSet id="1640271085313-4" author="abhishek160.kumar (generated)">
+    <changeSet id="1640328879925-5" author="abhishek160.kumar (generated)">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="blog" constraintName="FK_BLOG_ON_USER"
                                  referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1640328879925-6" author="abhishek160.kumar (generated)">
+        <addForeignKeyConstraint baseColumnNames="last_updated_by" baseTableName="category"
+                                 constraintName="FK_CATEGORY_ON_LAST_UPDATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
 
 </databaseChangeLog>

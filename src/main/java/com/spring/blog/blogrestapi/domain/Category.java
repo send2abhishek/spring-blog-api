@@ -21,9 +21,9 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String categoryName;
-    // we use joinColumn annotation to define the foreign key column name in the table
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinColumn(name = "last_updated_by", referencedColumnName = "id")
     private User user;
     @CreationTimestamp

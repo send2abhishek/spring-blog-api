@@ -7,10 +7,8 @@
   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
   http://www.liquibase.org/xml/ns/pro
   http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
-    <include file="db/changelog/add-user-blog.xml"/>
-    <include file="db/changelog/add-category.xml"/>
-    <include file="db/changelog/rename-column.xml"/>
-    <include file="db/changelog/raname-category-userId-column.xml"/>
+    <include file="db/changelog/2021/12/add-user-category-blog.xml"/>
+    <include file="db/changelog/2021/12/add-category-name-unique-constraint-category.xml"/>
 
 
 </databaseChangeLog>
