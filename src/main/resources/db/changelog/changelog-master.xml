@@ -9,6 +9,7 @@
   http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
     <include file="db/changelog/2021/12/add-user-category-blog.xml"/>
     <include file="db/changelog/2021/12/add-category-name-unique-constraint-category.xml"/>
+    <include file="db/changelog/2021/12/add-tag.xml"/>
 
 
 </databaseChangeLog>

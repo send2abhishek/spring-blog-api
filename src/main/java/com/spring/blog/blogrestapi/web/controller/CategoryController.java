@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categories/")
+@RequestMapping("/categories")
 public class CategoryController {
 
     private final CategoryService categoryService;
