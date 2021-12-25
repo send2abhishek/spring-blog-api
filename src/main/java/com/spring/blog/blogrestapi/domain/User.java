@@ -41,6 +41,9 @@ public class User {
     @UpdateTimestamp
     @JsonIgnore
     private Timestamp lastModifiedDate;
+    @OneToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private Role role;
 
     @Override
     public boolean equals(Object o) {
