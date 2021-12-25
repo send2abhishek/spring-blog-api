@@ -6,12 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CategoryDto {
+public class CategoryDto implements Serializable {
+
+    static final long serialVersionUID= 2631399033714650602L;
 
     @NotNull(message = "category can't be null")
     @Size(min = 2, message = "category should be min of 2 character")

@@ -16,13 +16,15 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String permission;
     @JsonIgnore
-    @ManyToMany(mappedBy = "permissions", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "permissions",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Role> roles=new HashSet<>();
 
     @Override

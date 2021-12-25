@@ -13,6 +13,7 @@
     <include file="db/changelog/2021/12/add-blog-category.xml"/>
     <include file="db/changelog/2021/12/add-blog-tag.xml"/>
     <include file="db/changelog/2021/12/add-usermanagement.xml"/>
+    <include file="db/changelog/2021/12/25-01-changelog.xml"/>
 
 
 </databaseChangeLog>

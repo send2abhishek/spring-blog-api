@@ -20,16 +20,18 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String roleName;
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.PERSIST,
                     CascadeType.MERGE
+
             })
     @JoinTable(name = "role_permission",
-            joinColumns = { @JoinColumn(name = "role_id",referencedColumnName = "id") },
-            inverseJoinColumns = { @JoinColumn(name = "permission_id",referencedColumnName = "id") })
-    private Set<Permission> permissions=new HashSet<>();
+            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "permission_id", referencedColumnName = "id")})
+    @ToString.Exclude
+    private Set<Permission> permissions = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
