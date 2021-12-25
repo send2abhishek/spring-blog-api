@@ -61,6 +61,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Role> findAllRoles() {
-        return null;
+        return roleRepository.findAll();
     }
 }

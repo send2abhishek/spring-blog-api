@@ -1,6 +1,7 @@
 package com.spring.blog.blogrestapi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,6 +19,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Builder
 @Entity
+@JsonIgnoreProperties({"password", "phoneNumber","createdDate","lastModifiedDate"})
 public class User {
 
 
@@ -29,19 +31,15 @@ public class User {
     @ToString.Exclude
     private List<Blog> blogs;
     private String userName;
-    @JsonIgnore
     private String password;
     @Column(unique = true)
     private String email;
-    @JsonIgnore
     private int phoneNumber;
     @CreationTimestamp
-    @JsonIgnore
     private Timestamp createdDate;
     @UpdateTimestamp
-    @JsonIgnore
     private Timestamp lastModifiedDate;
-    @OneToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 

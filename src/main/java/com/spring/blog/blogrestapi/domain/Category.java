@@ -1,6 +1,7 @@
 package com.spring.blog.blogrestapi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,7 +27,9 @@ public class Category {
     private Long id;
     @Column(unique = true)
     private String categoryName;
-    @OneToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    @JsonIgnoreProperties(ignoreUnknown = true,
+            value = {"hibernateLazyInitializer", "handler","role"})
+    @OneToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
     @JoinColumn(name = "last_updated_by", referencedColumnName = "id")
     private User user;
     @JsonIgnore
