@@ -24,7 +24,7 @@ public class Role {
     private String roleName;
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.MERGE
+                    CascadeType.DETACH
 
             })
     @JoinTable(name = "role_permission",

@@ -3,8 +3,10 @@ package com.spring.blog.blogrestapi.service;
 import com.spring.blog.blogrestapi.domain.Permission;
 import com.spring.blog.blogrestapi.domain.Role;
 import com.spring.blog.blogrestapi.repository.RoleRepository;
+import com.spring.blog.blogrestapi.web.exceptionHandler.NotFoundException;
 import com.spring.blog.blogrestapi.web.model.RoleDto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,7 +31,7 @@ public class RoleServiceImpl implements RoleService {
             Set<Permission> permissionSet = new HashSet<>();
             roleDto.getPermissions().forEach(permissionInput -> {
                 // permission already exists
-                if (permissionInput!= null) {
+                if (permissionInput != null) {
                     permissionSet.add(Permission.builder().id(permissionInput).build());
                 }
             });
@@ -39,24 +41,43 @@ public class RoleServiceImpl implements RoleService {
 
         // prepareResponse Object
 
-        HashMap<String,Object> response=new HashMap<>();
+        HashMap<String, Object> response = new HashMap<>();
 
-        if(role!=null){
-            response.put("message","Role Added");
-            response.put("roleName",roleDto.getRoleName());
+        if (role != null) {
+            Role savedRole = roleRepository.save(role);
+            response.put("message", "Role Added");
+            response.put("roleId",savedRole.getId());
+            response.put("roleName", savedRole.getRoleName());
             // save role to database
-            roleRepository.save(role);
-        }
-        else {
-            response.put("error","Something Went wrong");
+
+        } else {
+            response.put("error", "Something Went wrong");
         }
 
         return response;
     }
 
+    @Transactional
     @Override
     public Object updateRole(RoleDto roleDto, Long roleId) {
-        return null;
+        Role role = roleRepository.findById(roleId).orElseThrow(() -> new NotFoundException("role doesn't exist given role id"));
+
+        role.setRoleName(role.getRoleName());
+        Set<Permission> permissions = role.getPermissions();
+        permissions.clear();
+        roleDto.getPermissions().forEach(permissionInput -> {
+            if (permissionInput != null) {
+                permissions.add(Permission.builder().id(permissionInput).build());
+            }
+        });
+        role.setPermissions(permissions);
+        HashMap<String, Object> response = new HashMap<>();
+        response.put("message", "Role updated");
+        response.put("roleName", roleDto.getRoleName());
+        // save role to database
+        roleRepository.save(role);
+
+        return response;
     }
 
     @Override

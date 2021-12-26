@@ -27,7 +27,13 @@ public class RoleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Role>> fetchRole(){
-        return new ResponseEntity<>(roleService.findAllRoles(),HttpStatus.OK);
+    public ResponseEntity<List<Role>> fetchRole() {
+        return new ResponseEntity<>(roleService.findAllRoles(), HttpStatus.OK);
+    }
+
+    @PutMapping("/{roleId}")
+    public ResponseEntity<Object> updateRole(@Valid @RequestBody RoleDto roleDto, @PathVariable Long roleId) {
+        return new ResponseEntity<>(roleService.updateRole(roleDto, roleId), HttpStatus.ACCEPTED);
+
     }
 }
