@@ -1,7 +1,8 @@
-package com.spring.blog.blogrestapi.service;
+package com.spring.blog.blogrestapi.service.impl;
 
 import com.spring.blog.blogrestapi.domain.Tag;
 import com.spring.blog.blogrestapi.repository.TagRepository;
+import com.spring.blog.blogrestapi.service.TagService;
 import com.spring.blog.blogrestapi.web.mapper.TagMapper;
 import com.spring.blog.blogrestapi.web.model.TagDto;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,9 @@
-package com.spring.blog.blogrestapi.service;
+package com.spring.blog.blogrestapi.service.impl;
 
 import com.spring.blog.blogrestapi.domain.Permission;
 import com.spring.blog.blogrestapi.domain.Role;
 import com.spring.blog.blogrestapi.repository.RoleRepository;
+import com.spring.blog.blogrestapi.service.RoleService;
 import com.spring.blog.blogrestapi.web.exceptionHandler.NotFoundException;
 import com.spring.blog.blogrestapi.web.model.RoleDto;
 import org.springframework.stereotype.Service;

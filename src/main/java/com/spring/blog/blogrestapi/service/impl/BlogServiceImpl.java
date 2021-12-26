@@ -1,9 +1,10 @@
-package com.spring.blog.blogrestapi.service;
+package com.spring.blog.blogrestapi.service.impl;
 
 import com.spring.blog.blogrestapi.domain.Blog;
 import com.spring.blog.blogrestapi.repository.BlogRepository;
 import com.spring.blog.blogrestapi.repository.projection.BlogWithUser;
 import com.spring.blog.blogrestapi.repository.projection.CustomBlogFields;
+import com.spring.blog.blogrestapi.service.BlogService;
 import com.spring.blog.blogrestapi.web.exceptionHandler.NotFoundException;
 import com.spring.blog.blogrestapi.web.mapper.BlogMapper;
 import com.spring.blog.blogrestapi.web.model.BlogDto;
