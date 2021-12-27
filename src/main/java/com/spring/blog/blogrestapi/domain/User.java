@@ -39,7 +39,9 @@ public class User {
     private Timestamp createdDate;
     @UpdateTimestamp
     private Timestamp lastModifiedDate;
-    @OneToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(ignoreUnknown = true,
+            value = {"hibernateLazyInitializer", "handler","permissions"})
+    @OneToOne(cascade = CascadeType.DETACH,fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
