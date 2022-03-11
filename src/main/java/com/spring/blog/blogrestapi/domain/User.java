@@ -40,10 +40,11 @@ public class User {
     @UpdateTimestamp
     private Timestamp lastModifiedDate;
     @JsonIgnoreProperties(ignoreUnknown = true,
-            value = {"hibernateLazyInitializer", "handler","permissions"})
+            value = {"hibernateLazyInitializer", "handler"})
     @OneToOne(cascade = CascadeType.DETACH,fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
+    private String designation;
 
     @Override
     public boolean equals(Object o) {

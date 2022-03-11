@@ -63,7 +63,7 @@ public class RoleServiceImpl implements RoleService {
     public Object updateRole(RoleDto roleDto, Long roleId) {
         Role role = roleRepository.findById(roleId).orElseThrow(() -> new NotFoundException("role doesn't exist given role id"));
 
-        role.setRoleName(role.getRoleName());
+        role.setRoleName(roleDto.getRoleName());
         Set<Permission> permissions = role.getPermissions();
         permissions.clear();
         roleDto.getPermissions().forEach(permissionInput -> {

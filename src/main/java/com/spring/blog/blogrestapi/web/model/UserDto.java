@@ -23,4 +23,6 @@ public class UserDto {
     private int phoneNumber;
     @NotNull(message = "role id can't be blank")
     private Long roleId;
+    @NotNull(message = "designation can't be blank")
+    private String designation;
 }
