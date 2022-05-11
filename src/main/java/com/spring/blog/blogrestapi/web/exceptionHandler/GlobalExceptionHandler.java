@@ -31,6 +31,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), httpServletRequest.getRequestURI(), ex.getLocalizedMessage()), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(FileNotFoundException.class)
+    public ResponseEntity<Object> handleFileNotFoundException(FileNotFoundException exc,final HttpServletRequest httpServletRequest) {
+
+
+        ErrorResponse err = new ErrorResponse(HttpStatus.NOT_FOUND, exc.getMessage(), httpServletRequest.getRequestURI());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+    }
+
 
     @Override
     protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -76,12 +84,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
-    public ResponseEntity<Object> handleRecordNotFound(EmptyResultDataAccessException ex,final HttpServletRequest httpServletRequest) {
+    public ResponseEntity<Object> handleRecordNotFound(EmptyResultDataAccessException ex, final HttpServletRequest httpServletRequest) {
         return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage(), httpServletRequest.getRequestURI(), ex.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<Object> handleConstraintViolationException(DataIntegrityViolationException ex,final HttpServletRequest httpServletRequest) {
+    public ResponseEntity<Object> handleConstraintViolationException(DataIntegrityViolationException ex, final HttpServletRequest httpServletRequest) {
         return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, Objects.requireNonNull(ex.getRootCause()).getMessage(), httpServletRequest.getRequestURI(), ex.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
     }
 }
